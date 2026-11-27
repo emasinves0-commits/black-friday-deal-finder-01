@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DealSleuth — Black Friday Deal Finder 2026</title>
+<meta name="description" content="32 real Black Friday 2026 deals, every price checked on Nov 27, 2026 and every deal scored. No inflated was-prices.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="brand">
+    <span class="brand-mark">DS</span>
+    <div>
+      <h1>DealSleuth</h1>
+      <p class="tagline">Black Friday 2026 — every price checked, every deal scored.</p>
+    </div>
+  </div>
+  <p class="stats" id="stats">Loading deals…</p>
+</header>
+
+<nav class="controls" aria-label="Find deals">
+  <input id="search" type="search" placeholder="Search a product — try “AirPods”, “OLED”, “Dyson”…" aria-label="Search deals" autocomplete="off">
+  <div class="chips" id="category-chips" role="group" aria-label="Category"></div>
+  <div class="selects">
+    <label>Store
+      <select id="store" aria-label="Store"></select>
+    </label>
+    <label>Discount
+      <select id="discount" aria-label="Discount"></select>
+    </label>
+    <label>Sort by
+      <select id="sort" aria-label="Sort by"></select>
+    </label>
+  </div>
+</nav>
+
+<main>
+  <p class="result-line" id="result-line"></p>
+  <section id="grid" class="grid" aria-live="polite"></section>
+  <section id="detail" class="detail" hidden></section>
+  <p class="empty" id="empty" hidden>No deals match that search. Clear a filter or try another word.</p>
+</main>
+
+<footer class="method">
+  <h2>How DealSleuth checks a deal</h2>
+  <ol>
+    <li><strong>Found, not fed.</strong> Every deal on this page was found by our agent in a live deals source on Nov 27, 2026 — the day Black Friday opened — and read at the store it names.</li>
+    <li><strong>Checked, with a time.</strong> Each card shows when its price was checked and the source it was read in. A price with no source is not a deal here.</li>
+    <li><strong>Scored, honestly.</strong> Deal Score = discount % + 10 when a source calls the price a lowest-ever, capped at 99. Verdicts: <b>LOWEST EVER</b> (a source says so), <b>DEEP CUT</b> 50%+, <b>STRONG DROP</b> 40–49%, <b>SOLID DEAL</b> 30–39%, <b>TYPICAL SALE</b> under 30%. A small discount on a big ticket can still save you more — sort by “Biggest saving ($)” to see those first.</li>
+    <li><strong>Compared across stores.</strong> Where the same product is cheaper elsewhere, the card says so and the cheapest store is marked.</li>
+  </ol>
+  <p class="fineprint">Prices checked Nov 27, 2026, 06:20 UTC. “Was” prices are the retailer’s previous price as shown by the source. Prices can change; the store link on each card opens the product at its store. DealSleuth is an independent deal finder and is not affiliated with Amazon, Best Buy, Walmart, Disney+, Max or Peacock.</p>
+  <p class="fineprint"><a href="#/">All deals</a> · Built for Black Friday &amp; Cyber Monday 2026.</p>
+</footer>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>
