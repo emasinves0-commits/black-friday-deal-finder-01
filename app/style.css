@@ -147,6 +147,84 @@ a { color: var(--red-dark); }
   background: #fff;
 }
 
+.toggle {
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 8px 13px;
+  border-radius: 999px;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+.toggle[aria-pressed="true"] {
+  background: var(--red);
+  color: #fff;
+  border-color: var(--red);
+}
+
+/* ---------- Biggest savings ---------- */
+.top10 {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px 16px 10px;
+  margin: 0 0 16px;
+}
+
+.top10 h2 {
+  margin: 0 0 6px;
+  font-size: 17px;
+}
+
+.top-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 28px;
+}
+
+.top-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 14.5px;
+  min-width: 0;
+}
+
+.rank {
+  font-weight: 800;
+  color: var(--red);
+  flex: 0 0 18px;
+}
+
+.top-list a {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.top-store {
+  color: var(--muted);
+  font-size: 13px;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.top-save {
+  font-weight: 700;
+  color: var(--green);
+  white-space: nowrap;
+}
+
 /* ---------- Grid ---------- */
 main { max-width: 1240px; margin: 0 auto; padding: 0 20px 30px; }
 
@@ -338,6 +416,8 @@ main { max-width: 1240px; margin: 0 auto; padding: 0 20px 30px; }
 
 @media (max-width: 560px) {
   .grid { grid-template-columns: 1fr; }
+  .top-list { grid-template-columns: 1fr; }
+  .top-store { display: none; }
   .masthead { padding-top: 18px; }
   .brand h1 { font-size: 30px; }
   .tagline { font-size: 14px; }
