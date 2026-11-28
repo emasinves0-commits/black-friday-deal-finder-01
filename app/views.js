@@ -45,6 +45,10 @@ function compareLine(d) {
   return `<p class="compare">Also: ${parts.join(" · ")}</p>`;
 }
 
+function checkedLabelOf(d) {
+  return d.checkedLabel || CHECKED_LABEL;
+}
+
 export function cardHTML(d) {
   const v = verdictOf(d);
   const pct = discountPct(d);
@@ -64,7 +68,7 @@ export function cardHTML(d) {
     <span class="verdict ${v.cls}">${v.label}</span>
   </div>
   ${compareLine(d)}
-  <p class="checked">Checked ${CHECKED_LABEL} · Source: ${esc(d.source)}</p>
+  <p class="checked">Checked ${checkedLabelOf(d)} · Source: ${esc(d.source)}</p>
   <a class="store-link" href="${esc(d.url)}" target="_blank" rel="noopener">View at ${esc(d.store)} ↗</a>
 </article>`;
 }
@@ -105,7 +109,7 @@ export function detailHTML(d, all) {
     <tr><th>Store</th><th>Price</th><th></th></tr>
     ${table}
   </table>
-  <p class="checked">Checked ${CHECKED_LABEL} · Source: ${esc(d.source)} · “Was” price is the retailer’s previous price as shown by the source.</p>
+  <p class="checked">Checked ${checkedLabelOf(d)} · Source: ${esc(d.source)} · “Was” price is the retailer’s previous price as shown by the source.</p>
   <a class="store-link" href="${esc(d.url)}" target="_blank" rel="noopener">View at ${esc(d.store)} ↗</a>`;
 }
 
@@ -113,5 +117,17 @@ export function statsLine(all) {
   const saving = all.reduce((s, d) => s + (d.was - d.price), 0);
   const stores = new Set(all.map((d) => d.store)).size;
   const cats = new Set(all.map((d) => d.category)).size;
-  return `${all.length} deals · ${stores} stores · ${cats} categories · ${money(Math.round(saving))} total savings`;
+  const lowest = all.filter((d) => d.lowestEver).length;
+  return `${all.length} deals · ${stores} stores · ${cats} categories · ${money(Math.round(saving))} total savings · ${lowest} lowest-ever prices`;
+}
+
+export function topSavingsHTML(all) {
+  const top = [...all].sort((a, b) => b.was - b.price - (a.was - a.price)).slice(0, 10);
+  const rows = top
+    .map(
+      (d, i) =>
+        `<li><span class="rank">${i + 1}</span><a href="#/deal/${esc(d.id)}">${esc(d.title)}</a><span class="top-store">${esc(d.store)}</span><span class="top-save">save ${money(d.was - d.price)} · −${discountPct(d)}%</span></li>`,
+    )
+    .join("");
+  return `<h2>Biggest savings</h2><ol class="top-list">${rows}</ol>`;
 }
